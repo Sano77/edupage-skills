@@ -1,3 +1,4 @@
 .privacy-salt
 .DS_Store
 __pycache__/
+.privacy-allow.d/

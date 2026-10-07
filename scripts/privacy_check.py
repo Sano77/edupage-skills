@@ -7,12 +7,14 @@
   streets). The key lives only in .privacy-salt (git-ignored) and in the GitHub secret
   PRIVACY_SALT, so the list cannot be reversed by hashing common names.
   Add a word:  python3 scripts/privacy_check.py --hash "word" >> .privacy-denylist.sha256
+- .privacy-allow (optional, one value per line): values that are public on purpose,
+  e.g. a business phone number shown on a website.
 """
 import hashlib, hmac, os, re, subprocess, sys, unicodedata
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DENYLIST = os.path.join(ROOT, ".privacy-denylist.sha256")
-SKIP = {".privacy-denylist.sha256", "scripts/privacy_check.py", ".privacy-salt"}
+SKIP = {".privacy-denylist.sha256", "scripts/privacy_check.py", ".privacy-salt", ".privacy-allow"}
 ALLOWED_SUBDOMAINS = {"portal", "www", "help", "myschool", "mojaskola", "mojeskola", "school", "skola", "{school}", "{skola}"}
 ALLOWED_EMAIL = re.compile(r"(noreply|no-reply)@|@users\.noreply\.github\.com$|@example\.(com|org)$", re.I)
 
@@ -65,6 +67,10 @@ def main():
         print("note: PRIVACY_SALT not set – private denylist skipped, generic checks only")
     elif os.path.exists(DENYLIST):
         deny = {l.split()[0] for l in open(DENYLIST) if l.strip() and not l.startswith("#")}
+    allow = set()
+    af = os.path.join(ROOT, ".privacy-allow")
+    if os.path.exists(af):
+        allow = {re.sub(r"\s", "", l).lower() for l in open(af) if l.strip() and not l.startswith("#")}
     problems = []
     for f in files():
         p = os.path.join(ROOT, f)
@@ -77,6 +83,7 @@ def main():
             for name, rx in PATTERNS.items():
                 for m in rx.finditer(line):
                     v = m.group(0)
+                    if re.sub(r"\s", "", v).lower() in allow: continue
                     if name == "e-mail" and ALLOWED_EMAIL.search(v): continue
                     if name == "school subdomain" and m.group(1).lower() in ALLOWED_SUBDOMAINS: continue
                     if name == "ID card no." and FAKE_ID.match(v): continue
