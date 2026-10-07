@@ -1,5 +1,7 @@
 # EduPage skills pre Claude
 
+> **Pre rodičov / for parents:** jednoduchý návod je v [docs/pre-rodicov.md](docs/pre-rodicov.md) · [English](docs/pre-rodicov.en.md) · [Čeština](docs/pre-rodicov.cs.md)
+
 Tri skills pre rodičov: **edupage-reader** (prehľad, testy, ospravedlnenky), **edupage-report** (súhrnné reporty a stránka triedy) a **edupage-notify** (upozornenia na nové známky a testy). Celý obsah: [CONTENTS.md](CONTENTS.md).
 
 Skill, ktorý z rodičovského účtu v [EduPage](https://www.edupage.org) vytiahne to dôležité: **najbližšie testy a písomky**, domáce úlohy, rozvrh, správy od učiteľov a akcie školy. Funguje pre viac detí, aj keď každé chodí na inú školu.
@@ -35,7 +37,7 @@ Príklady: „Upozorni ma, keď pribudne nová známka“, „Sleduj testy a daj
 
 ## Pre viac rodičov / nasadenie
 
-Toto je navrhnuté tak, aby si to **každý rodič nastavil sám** a videl len svoje EduPage — žiadne heslá si navzájom nedávate. Hotový jednostranový návod, ktorý môžeš poslať komukoľvek: **[docs/pre-rodicov.md](docs/pre-rodicov.md)**. Nápady do budúcna (vrátane možnej služby) sú v [ROADMAP.md](ROADMAP.md).
+Toto je navrhnuté tak, aby si to **každý rodič nastavil sám** a videl len svoje EduPage — žiadne heslá si navzájom nedávate. Hotový jednostranový návod, ktorý môžeš poslať komukoľvek: **[docs/pre-rodicov.md](docs/pre-rodicov.md)** (aj [English](docs/pre-rodicov.en.md) a [Čeština](docs/pre-rodicov.cs.md)). Nápady do budúcna (vrátane možnej služby) sú v [ROADMAP.md](ROADMAP.md).
 
 ## Inštalácia
 
