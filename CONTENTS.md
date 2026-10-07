@@ -19,6 +19,8 @@ edupage-skills/
 │  ├─ privacy_check.py                       # kontrola osobných údajov v repe
 │  └─ add-privacy-check.sh                   # pridá rovnakú kontrolu do iných repozitárov
 ├─ .github/workflows/privacy.yml             # CI – spustí kontrolu pri každom pushi
+├─ docs/pre-rodicov.md                       # hotový návod pre rodiča (na poslanie)
+├─ ROADMAP.md                                # nápady do budúcna
 ├─ docs/ukazka-suhrnu.png                    # ukážka súhrnu (vymyslené dáta) do README
 ├─ README.md
 ├─ LICENSE                                   # MIT

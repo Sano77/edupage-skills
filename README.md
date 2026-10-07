@@ -33,6 +33,10 @@ Príklady: „Upozorni ma, keď pribudne nová známka“, „Sleduj testy a daj
 
 ![Ukážka notifikácie](docs/ukazka-notifikacie.png)
 
+## Pre viac rodičov / nasadenie
+
+Toto je navrhnuté tak, aby si to **každý rodič nastavil sám** a videl len svoje EduPage — žiadne heslá si navzájom nedávate. Hotový jednostranový návod, ktorý môžeš poslať komukoľvek: **[docs/pre-rodicov.md](docs/pre-rodicov.md)**. Nápady do budúcna (vrátane možnej služby) sú v [ROADMAP.md](ROADMAP.md).
+
 ## Inštalácia
 
 **Claude Code / Cowork (plugin):**

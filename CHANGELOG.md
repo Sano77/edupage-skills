@@ -11,4 +11,5 @@ Prvé vydanie. Plugin pre rodičov s účtom v EduPage (edupage.org), čítanie 
 - **edupage-report** – rodinný týždenný/mesačný report a zdieľateľná stránka triedy s odpočtom do testu a sekciou „Už bolo“.
 - **edupage-notify** – upozornenia len na nové známky a novo ohlásené testy, so stavom medzi behmi; vhodné ako naplánovaná úloha.
 - Kontrola súkromia: `privacy_check.py` + gitleaks v GitHub Actions, hashovaný zoznam súkromných slov s tajným kľúčom.
-- Dokumentácia: README (SK + EN), CONTENTS.md, ukážky súhrnu a notifikácie.
+- Dokumentácia: README (SK + EN), CONTENTS.md, ROADMAP.md, návod pre rodičov (docs/pre-rodicov.md), ukážky súhrnu a notifikácie.
+- edupage-notify: upozornenie pri nedostupnom EduPage a pravidlá pre viac používateľov (každý svoje EduPage, bez miešania dát).
