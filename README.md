@@ -1,5 +1,7 @@
 # EduPage skills pre Claude
 
+Dva skills pre rodičov: **edupage-reader** (prehľad, testy, ospravedlnenky) a **edupage-report** (súhrnné reporty a stránka triedy).
+
 Skill, ktorý z rodičovského účtu v [EduPage](https://www.edupage.org) vytiahne to dôležité: **najbližšie testy a písomky**, domáce úlohy, rozvrh, správy od učiteľov a akcie školy. Funguje pre viac detí, aj keď každé chodí na inú školu.
 
 Claude číta EduPage cez **Claude in Chrome** v tvojom prihlásenom prehliadači. Heslo nikam neukladá a nič neodošle (ospravedlnenka, odpoveď učiteľke…) bez tvojho výslovného „áno“.
@@ -15,6 +17,13 @@ Claude číta EduPage cez **Claude in Chrome** v tvojom prihlásenom prehliadač
 - ospravedlnenky, odhlásenie obeda, odpovede na správy (vždy s potvrdením)
 - viac detí a viac škôl na jednom EduPage konte (prepínanie bez hesla), počet detí nie je obmedzený
 - odpovedá v jazyku, v akom sa pýtaš (slovensky, česky, anglicky…)
+
+## Súhrnné reporty (edupage-report)
+
+- **Rodinný report** – týždenný alebo mesačný, za každé dieťa zvlášť: testy s odpočtom, napísané testy, DÚ, akcie, dochádzka, voliteľne známky a na konci zoznam „čo treba urobiť“.
+- **Stránka triedy** – zdieľateľný prehľad pre spolužiakov: najbližší test s odpočtom dní, počítadlo pri každom teste, zoznam po týždňoch a sekcia „Už bolo“. Obsahuje len údaje triedy, nikdy známky, dochádzku ani mená a kontakty.
+
+Príklady: „Sprav týždenný report pre obe deti“, „Daj testy a akcie 4.A na stránku“.
 
 ## Inštalácia
 
@@ -38,6 +47,8 @@ Potrebuješ rozšírenie **Claude in Chrome** a byť v Chrome prihlásený do Ed
 
 ## Súkromie
 
+Repozitár pri každom pushi kontroluje GitHub Actions (`scripts/privacy_check.py` + gitleaks): e-maily, telefóny, IBAN, rodné čísla, čísla OP, skutočné adresy škôl na EduPage, GPS v obrázkoch a súkromný zoznam slov uložený len ako kľúčované hashe.
+
 Skill je napísaný po anglicky, aby ho mohli použiť rodičia kdekoľvek, ale odpovedá po slovensky, keď sa pýtaš po slovensky. Neobsahuje žiadne mená, školy ani prihlasovacie údaje – deti a školy si zistí z tvojho účtu pri prvom spustení. Údaje o deťoch zostávajú v tvojom chate.
 
 ---
@@ -49,6 +60,7 @@ A Claude skill for parents using [EduPage](https://www.edupage.org) (common in S
 - any number of children, also at different schools on one account
 - daily / weekly summary per child, "what's on tomorrow?", events calendar with `.ics` export
 - absence excuses, cancelling lunch, replying to teachers – always shown first and sent only after your explicit "yes"
+- a second skill, **edupage-report**, builds weekly/monthly family reports and a shareable class agenda page with a test countdown
 - answers in your language; never stores passwords or children's data outside your chat
 
 Install in Claude Code / Cowork:

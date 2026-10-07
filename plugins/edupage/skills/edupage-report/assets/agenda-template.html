@@ -1,0 +1,171 @@
+<title>{{PAGE_TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: one calm column — next test up top, then a dated list grouped by week, filter chips to narrow it */
+:root{
+  --bg:#f7f9fc; --surface:#ffffff; --fg:#17202e; --muted:#667085; --line:#e4e9f1;
+  --accent:#2f5bea; --accent-soft:#e8eeff;
+  --test:#e2553d; --test-soft:#fdecea;
+  --task:#c98a07; --task-soft:#fdf4dc;
+  --event:#118a68; --event-soft:#e2f5ee;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141c; --surface:#161d28; --fg:#e8edf5; --muted:#93a0b4; --line:#253043;
+  --accent:#7d9bff; --accent-soft:#1d2a4a;
+  --test:#ff8a73; --test-soft:#3a1f1b; --task:#f0bd45; --task-soft:#352b12;
+  --event:#4fd1a5; --event-soft:#123329; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0f141c; --surface:#161d28; --fg:#e8edf5; --muted:#93a0b4; --line:#253043;
+  --accent:#7d9bff; --accent-soft:#1d2a4a;
+  --test:#ff8a73; --test-soft:#3a1f1b; --task:#f0bd45; --task-soft:#352b12;
+  --event:#4fd1a5; --event-soft:#123329; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:16px}
+.wrap{max-width:720px;margin:0 auto;padding-block:40px 64px;display:flex;flex-direction:column;gap:36px}
+
+header{display:flex;flex-direction:column;gap:6px}
+.kicker{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,7vw,48px);line-height:1.05;margin:0;letter-spacing:-.02em;text-wrap:balance}
+h1 span{color:var(--accent)}
+.sub{color:var(--muted);margin:0}
+
+.next{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.count{width:92px;height:92px;border-radius:50%;background:var(--test-soft);color:var(--test);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--display);line-height:1}
+.count b{font-size:38px;font-weight:700;font-variant-numeric:tabular-nums}
+.count small{font-size:12px;font-family:var(--body);font-weight:600;margin-top:4px}
+.next-body{min-width:0;display:flex;flex-direction:column;gap:4px}
+.next-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--test)}
+.next h2{font-family:var(--display);font-size:24px;font-weight:700;margin:0;line-height:1.2}
+.next p{margin:0;color:var(--muted)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:14px;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:7px 14px;border-radius:999px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.week{display:flex;flex-direction:column;gap:10px}
+.week h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0 0 2px}
+.list{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.item{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:16px 18px;border-top:1px solid var(--line)}
+.item:first-child{border-top:0}
+.date{font-family:var(--display);line-height:1.1;font-variant-numeric:tabular-nums}
+.date b{display:block;font-size:24px;font-weight:700}
+.date span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-family:var(--body);font-weight:600}
+.what{min-width:0;display:flex;flex-direction:column;gap:3px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tag{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px}
+.t-test{background:var(--test-soft);color:var(--test)}
+.t-task{background:var(--task-soft);color:var(--task)}
+.t-event{background:var(--event-soft);color:var(--event)}
+.soon{font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:2px 9px;border-radius:999px}
+.what strong{font-weight:600;font-size:16px}
+.what p{margin:0;color:var(--muted);font-size:15px}
+.empty{color:var(--muted);text-align:center;padding:24px}
+.counter{font-size:12px;font-weight:700;color:var(--test);border:1px solid var(--test);padding:1px 9px;border-radius:999px;font-variant-numeric:tabular-nums}
+.counter.is-next{background:var(--test);color:var(--surface)}
+.item.next-test{box-shadow:inset 3px 0 0 var(--test)}
+.t-done{background:var(--line);color:var(--muted)}
+.past .item{opacity:.6}
+.past .item strong{text-decoration:line-through;text-decoration-color:var(--muted)}
+
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+
+@media (max-width:480px){
+  .next{grid-template-columns:1fr;justify-items:start}
+  .item{grid-template-columns:52px 1fr;gap:12px;padding:14px}
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="kicker">{{KICKER}}</div>
+    <h1>{{HEADLINE}}</h1>
+    <p class="sub" id="today"></p>
+  </header>
+
+  <section class="next" id="next" aria-live="polite"></section>
+
+  <nav class="chips" aria-label="Filter">
+    <button class="chip" id="f-all" data-f="all" aria-pressed="true">Všetko</button>
+    <button class="chip" id="f-test" data-f="test" aria-pressed="false"><i style="background:var(--test)"></i>Testy</button>
+    <button class="chip" id="f-task" data-f="task" aria-pressed="false"><i style="background:var(--task)"></i>Úlohy</button>
+    <button class="chip" id="f-event" data-f="event" aria-pressed="false"><i style="background:var(--event)"></i>Akcie</button>
+  </nav>
+
+  <main id="weeks"></main>
+
+  <footer>{{FOOTER}}</footer>
+</div>
+
+<script>
+const ITEMS=/*{{ITEMS_JSON}}*/[];
+const LABEL={test:"Test",task:"Úloha",event:"Akcia"};
+const DAYS=["Ne","Po","Ut","St","Št","Pi","So"];
+const MONTHS=["januára","februára","marca","apríla","mája","júna","júla","augusta","septembra","októbra","novembra","decembra"];
+const P=s=>{const[a,b,c]=s.split("-").map(Number);return new Date(a,b-1,c)};
+const today=new Date();today.setHours(0,0,0,0);
+const diff=d=>Math.round((d-today)/864e5);
+const rel=n=>n===0?"dnes":n===1?"zajtra":n<5?`o ${n} dni`:`o ${n} dní`;
+let filter="all";
+try{const f=localStorage.getItem("agenda-filter");if(f)filter=f}catch(e){}
+
+document.getElementById("today").textContent=`${["Nedeľa","Pondelok","Utorok","Streda","Štvrtok","Piatok","Sobota"][today.getDay()]}, ${today.getDate()}. ${MONTHS[today.getMonth()]} ${today.getFullYear()}`;
+
+const ALL=ITEMS.map(i=>({...i,start:P(i.d),stop:P(i.end||i.d)}));
+// a test counts as done once school is out (14:00) on its day
+const afterSchool=new Date().getHours()>=14;
+const isDone=i=>i.type==="test"?(i.stop<today||(+i.stop===+today&&afterSchool)):i.stop<today;
+const upcoming=ALL.filter(i=>!isDone(i)).sort((a,b)=>a.start-b.start);
+const pastTests=ALL.filter(i=>i.type==="test"&&isDone(i)).sort((a,b)=>b.start-a.start);
+const countLabel=n=>n===0?"dnes":n===1?"zajtra":`ešte ${n} ${n<5?"dni":"dní"}`;
+
+const nextTest=upcoming.find(i=>i.type==="test");
+function renderNext(){
+  const el=document.getElementById("next");
+  const t=nextTest;
+  if(!t){el.innerHTML=`<div class="next-body"><div class="next-label">Testy</div><h2>Žiadny ohlásený test</h2></div>`;return}
+  const n=Math.max(0,diff(t.start));
+  el.innerHTML=`<div class="count"><b>${n}</b><small>${n===1?"deň":n>1&&n<5?"dni":"dní"}</small></div>
+  <div class="next-body"><div class="next-label">Najbližší test · ${rel(n)}</div><h2>${t.title}</h2><p>${DAYS[t.start.getDay()]} ${t.start.getDate()}. ${t.start.getMonth()+1}. — ${t.note||""}</p></div>`;
+}
+function weekKey(d){const m=new Date(d);m.setDate(m.getDate()-((m.getDay()+6)%7));return m}
+function weekTitle(m){
+  const n=diff(m);
+  if(n<=0)return"Tento týždeň";
+  if(n<=7)return"Budúci týždeň";
+  return `${["Január","Február","Marec","Apríl","Máj","Jún","Júl","August","September","Október","November","December"][m.getMonth()]} ${m.getFullYear()}`;
+}
+function render(){
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c.dataset.f===filter)));
+  const rows=upcoming.filter(i=>filter==="all"||i.type===filter);
+  const box=document.getElementById("weeks");
+  const showPast=(filter==="all"||filter==="test")&&pastTests.length;
+  if(!rows.length&&!showPast){box.innerHTML=`<p class="empty">Nič ohlásené.</p>`;return}
+  const groups=[];
+  rows.forEach(i=>{
+    const wk=weekKey(i.start<today?today:i.start);
+    const title=weekTitle(wk);
+    let g=groups.find(x=>x.title===title);
+    if(!g){g={title,items:[]};groups.push(g)}
+    g.items.push(i);
+  });
+  box.innerHTML=groups.map(g=>`<section class="week"><h3>${g.title}</h3><ul class="list">${g.items.map(i=>{
+    const n=diff(i.start);
+    const range=i.end?`<span>do ${P(i.end).getDate()}. ${P(i.end).getMonth()+1}.</span>`:`<span>${DAYS[i.start.getDay()]}</span>`;
+    let soon="";
+    if(i.type==="test")soon=`<span class="counter${i===nextTest?" is-next":""}">${countLabel(n)}</span>`;
+    else if((n>=0&&n<=1)||(i.start<=today&&i.stop>=today))soon=`<span class="soon">${i.start<=today?"prebieha":rel(n)}</span>`;
+    return `<li class="item${i===nextTest?" next-test":""}"><div class="date"><b>${i.start.getDate()}. ${i.start.getMonth()+1}.</b>${range}</div>
+    <div class="what"><div class="row"><span class="tag t-${i.type}">${LABEL[i.type]}</span>${soon}</div><strong>${i.title}</strong>${i.note?`<p>${i.note}</p>`:""}</div></li>`}).join("")}</ul></section>`).join("")
+  + (showPast?`<section class="week past"><h3>Už bolo</h3><ul class="list">${pastTests.map(i=>`<li class="item"><div class="date"><b>${i.start.getDate()}. ${i.start.getMonth()+1}.</b><span>${DAYS[i.start.getDay()]}</span></div>
+    <div class="what"><div class="row"><span class="tag t-done">✓ Už bolo</span></div><strong>${i.title}</strong>${i.note?`<p>${i.note}</p>`:""}</div></li>`).join("")}</ul></section>`:"");
+}
+document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{filter=c.dataset.f;try{localStorage.setItem("agenda-filter",filter)}catch(e){}render()}));
+renderNext();render();
+</script>
