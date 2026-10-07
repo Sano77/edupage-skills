@@ -1,6 +1,6 @@
 # Obsah pluginu edupage-skills
 
-Prehľad toho, čo plugin obsahuje a ako je poskladaný. Verzia **1.3.0**.
+Prehľad toho, čo plugin obsahuje a ako je poskladaný. Verzia **1.0.0**.
 
 ## Štruktúra
 

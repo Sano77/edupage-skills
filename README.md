@@ -31,6 +31,8 @@ Sleduje EduPage a dá vedieť, **len keď niečo pribudne** — nová známka al
 
 Príklady: „Upozorni ma, keď pribudne nová známka“, „Sleduj testy a daj vedieť večer predtým“.
 
+![Ukážka notifikácie](docs/ukazka-notifikacie.png)
+
 ## Inštalácia
 
 **Claude Code / Cowork (plugin):**
