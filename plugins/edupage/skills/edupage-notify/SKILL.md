@@ -63,6 +63,27 @@ This skill is most useful on a schedule. Offer to set up a recurring task (e.g. 
 
 If the user wants it, also feed new tests into the edupage-report class page or an `.ics` calendar.
 
+## When EduPage can't be reached
+
+If the signed-in EduPage isn't reachable (Claude in Chrome not connected, or not logged in), **do not stay silent** – the user needs to know their watch isn't working:
+
+- Track a `failStreak` counter per child in the state file.
+- On each failed check, increment it and send a short alert: "⚠️ Kontrola EduPage dnes neprebehla – Chrome nie je prihlásený do EduPage." On the **3rd failed run in a row**, add: "Odporúčam úlohe zapnúť ‚Require this computer', aby bežala cez tvoj počítač s prihláseným EduPage."
+- Reset `failStreak` to 0 on the first successful check.
+- If the state file can't persist between runs (fresh cloud sessions), you can't count a streak reliably, so alert on **every** failed check and mention the ‚Require this computer' option once.
+
+A successful check that simply finds nothing new still stays quiet (no notification). Only a *failure* breaks the silence.
+
+## For multiple people (per user)
+
+This skill carries **no names, schools, children or logins** – each person runs it on their **own** EduPage. The flow for any user:
+
+1. They install the plugin and open Claude in Chrome signed in to their own EduPage.
+2. The skill discovers their children and schools from their account (see the first-run steps in edupage-reader) and watches only their data.
+3. Each user sets up their **own** scheduled check; the schedule prompt may name their children/schools, but that stays private to their account – it never belongs in this shared skill.
+
+Never mix one user's children, grades or state with another's. The state file, any `.ics` and any alert belong only to the user who ran the check.
+
 ## Rules
 
 - Never send or publish children's data; the alert goes only to the user (chat or their notification).
