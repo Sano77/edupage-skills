@@ -1,6 +1,6 @@
 # EduPage skills pre Claude
 
-Dva skills pre rodičov: **edupage-reader** (prehľad, testy, ospravedlnenky) a **edupage-report** (súhrnné reporty a stránka triedy).
+Tri skills pre rodičov: **edupage-reader** (prehľad, testy, ospravedlnenky), **edupage-report** (súhrnné reporty a stránka triedy) a **edupage-notify** (upozornenia na nové známky a testy). Celý obsah: [CONTENTS.md](CONTENTS.md).
 
 Skill, ktorý z rodičovského účtu v [EduPage](https://www.edupage.org) vytiahne to dôležité: **najbližšie testy a písomky**, domáce úlohy, rozvrh, správy od učiteľov a akcie školy. Funguje pre viac detí, aj keď každé chodí na inú školu.
 
@@ -24,6 +24,12 @@ Claude číta EduPage cez **Claude in Chrome** v tvojom prihlásenom prehliadač
 - **Stránka triedy** – zdieľateľný prehľad pre spolužiakov: najbližší test s odpočtom dní, počítadlo pri každom teste, zoznam po týždňoch a sekcia „Už bolo“. Obsahuje len údaje triedy, nikdy známky, dochádzku ani mená a kontakty.
 
 Príklady: „Sprav týždenný report pre obe deti“, „Daj testy a akcie 4.A na stránku“.
+
+## Upozornenia na nové známky a testy (edupage-notify)
+
+Sleduje EduPage a dá vedieť, **len keď niečo pribudne** — nová známka alebo novo ohlásený test. Pamätá si, čo už hlásil, takže neotravuje opakovane. Najlepšie ako naplánovaná úloha poobede cez pracovné dni.
+
+Príklady: „Upozorni ma, keď pribudne nová známka“, „Sleduj testy a daj vedieť večer predtým“.
 
 ## Inštalácia
 
