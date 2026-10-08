@@ -1,6 +1,6 @@
 # Obsah pluginu edupage-skills
 
-Prehľad toho, čo plugin obsahuje a ako je poskladaný. Verzia **1.1.0**.
+Prehľad toho, čo plugin obsahuje a ako je poskladaný. Verzia **1.2.0**.
 
 ## Štruktúra
 
@@ -10,7 +10,9 @@ edupage-skills/
 ├─ plugins/edupage/
 │  ├─ .claude-plugin/plugin.json             # definícia pluginu
 │  └─ skills/
-│     ├─ edupage-reader/SKILL.md             # Skill 1 – prehľad
+│     ├─ edupage-reader/
+│     │  ├─ SKILL.md                         # Skill 1 – prehľad
+│     │  └─ scripts/collect.js               # rýchla cesta: dáta z EduPage v prihlásenej karte
 │     ├─ edupage-report/
 │     │  ├─ SKILL.md                         # Skill 2 – reporty
 │     │  └─ assets/agenda-template.html      # šablóna zdieľateľnej stránky triedy

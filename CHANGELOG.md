@@ -2,6 +2,13 @@
 
 Formát podľa [Keep a Changelog](https://keepachangelog.com/), verzie podľa [SemVer](https://semver.org/).
 
+## [1.2.0] – 2026-10-08
+
+### Pridané
+- **Rýchla cesta cez dáta EduPage** (`edupage-reader/scripts/collect.js`): skript beží v prihlásenej karte rodiča a jednou sériou požiadaviek (tie isté, aké robí web EduPage, len čítanie, bez hesla) vráti testy, DÚ, akcie, správy, rozvrh na dnes/zajtra aj na dva týždne, suplovanie, obedy a nové známky. Overené na dvoch rôznych školách.
+- Rozvrh už netreba čítať zo screenshotu; UI cesta ostáva ako záloha.
+- edupage-notify a edupage-report zbierajú dáta tou istou rýchlou cestou.
+
 ## [1.1.0] – 2026-10-08
 
 ### Pridané

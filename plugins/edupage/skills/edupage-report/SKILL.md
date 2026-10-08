@@ -57,6 +57,9 @@ A page the child's classmates or other parents can open: what's coming for **one
 
 ## Data sources (same as edupage-reader)
 
+Collect with edupage-reader's **fast path** (`scripts/collect.js`, run in the signed-in tab once per school; for a monthly report set `daysBack: 31`, for the class page `daysAhead: 28`). Attendance isn't in the collector – take it from the attendance page. Use the pages below as the fallback.
+
+
 | What | Where |
 |---|---|
 | Tests, homework | `/exam/?eqa=ZmlsdGVyVGFiPXdvcmtz` + teacher messages (tests announced only in a message) |

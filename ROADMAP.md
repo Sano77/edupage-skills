@@ -14,10 +14,6 @@ Prečo nie API alebo cloudový konektor:
 
 Obmedzenie, s ktorým rátame: čítanie potrebuje zapnutý počítač s Chrome. Z mobilu bez počítača pokrýva plugin screenshoty a fotky; upozornenia vie poslať aj samotná appka EduPage.
 
-## Ďalší krok
-
-- **Rýchla cesta cez endpointy v prehliadači** – v Chrome rodiča volať cez `javascript_tool` rovnaké interné endpointy, ktoré používa web (len GET, s cookies rodiča, bez hesla). Rýchlejšie a presnejšie než klikanie a screenshoty (rozvrh ako dáta), so záložným postupom cez UI, keď endpoint nevráti očakávané dáta. Postup: zmapovať požiadavky cez `read_network_requests` na reálnom účte (obe školy), do repa zapísať len všeobecné cesty bez subdomén a ID, nekopírovať kód z GPL knižníc. Využiť aj v edupage-notify.
-
 ## Zvážiť časom
 
 - **B2B cez školy** – škola je prevádzkovateľ údajov, takže môže legálne schváliť integráciu alebo export. Ponuka: nastavenie a podpora AI asistenta pre rodičov žiakov danej školy, s jej súhlasom. Premyslieť obsah ponuky, cenu a čo musí škola schváliť.
@@ -26,6 +22,10 @@ Obmedzenie, s ktorým rátame: čítanie potrebuje zapnutý počítač s Chrome.
 - **Perzistentný stav notifikácií** medzi behmi (napr. ľahká databáza alebo stránka), aby počítadlo zlyhaní a „čo už bolo nahlásené“ fungovalo aj pri cloudových behoch bez viazaného počítača.
 - **Export do kalendára** pre testy a akcie priamo z notifikácie (`.ics`), prípadne zápis do pripojeného kalendára.
 - **Stránka triedy** ako hostovaná verzia s automatickou aktualizáciou (dnes sa generuje na vyžiadanie).
+
+## Hotové (v1.2.0)
+
+- rýchla cesta cez interné dáta EduPage v prehliadači rodiča (`scripts/collect.js`), rozvrh bez screenshotu, overené na 2 školách
 
 ## Hotové (v1.1.0)
 

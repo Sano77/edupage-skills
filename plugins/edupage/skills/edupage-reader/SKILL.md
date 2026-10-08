@@ -53,9 +53,32 @@ Nothing is hard-coded; the skill discovers children and schools from the account
 - At the start load the Chrome tools with a single ToolSearch (`tabs_context_mcp, tabs_create_mcp, tabs_close_mcp, navigate, get_page_text, read_page, find, computer, javascript_tool`), then `tabs_context_mcp`, and open a **new** tab. Close it when done.
 - If a school won't open even after the parent signed in and you switched via the menu → stop and say what you see.
 - Right after `navigate`, `get_page_text` may fail or show "loading…" – wait 2–3 s and retry.
-- The timetable is a graphical grid – `get_page_text` can't read it, take a **screenshot**.
+- Prefer the **Fast path** below. In the UI fallback the timetable is a graphical grid – `get_page_text` can't read it, take a **screenshot**.
 
-## Where to find things
+## Fast path – read the data directly (preferred)
+
+Instead of clicking through pages and taking screenshots, run the bundled collector **in the signed-in EduPage tab**: read `scripts/collect.js` (next to this file) and pass its whole content as the `javascript_tool` text. It makes the same same-origin requests the EduPage web makes, with the parent's own cookies – read-only, no password, nothing leaves the browser except the result returned to you. One run returns a compact JSON (~15 KB) for the **current school**:
+
+| Key | What it holds |
+|---|---|
+| `children` | child id, name, class |
+| `tests` | upcoming tests in the window: `date` (the test day), `type` (Písomka, Kratučký testík, Veľká písomka, Skúšanie, Projekt…), `subject`, `title`, `announced` |
+| `homework` | `due`, `subject`, `title`, `details` |
+| `events` | school events, trips, holidays in the window |
+| `messages` | teacher messages and news from the last days: `date`, `from`, `text` (trimmed) |
+| `today_tomorrow` | lessons for today and tomorrow with times, subjects, teachers – already reflects substitutions |
+| `week` | timetable for this and next week by date (use for days beyond tomorrow) |
+| `substitutions`, `lunches`, `bells` | substitution notices, lunch menu, bell times |
+| `grades` | recent grades: `date`, `subject`, `value`, `what` |
+
+- Adjust `OPTIONS` at the top of the script when needed (`daysAhead`, `daysBack`, `weekTimetable`). Weekly summary → `daysBack: 7`; calendar → `daysAhead: 28`.
+- **Several schools:** run it once per school – switch schools via the account menu first (see **Switching schools**), then run it again in the same tab.
+- **Several children at one school:** the script reports the currently selected child; switch the child in EduPage and run again.
+- **Teacher messages still matter for tests:** scan `messages[].text` for tests announced only in a message ("v piatok diktát") and merge them into `tests`.
+- **Fall back to the UI** (the table below) when the result has `error` (`signed_out` → ask the parent to sign in; anything else → EduPage probably changed), when `week` has an `error`, or when a section you need is missing. Say in one line that you used the slower way.
+- Present the result in the usual output formats below – never dump the raw JSON on the parent.
+
+## Where to find things (UI fallback)
 
 Paths work for every school; prefix them with `https://{school}.edupage.org`. Menu labels depend on the EduPage UI language (SK / CZ / EN shown).
 
@@ -85,7 +108,7 @@ With several children, output is **per child** – a separate block with the chi
 For each child, in order: **tests (subject, date, topic if given)**, homework with due dates, unread messages, things to sign/confirm/bring, today's/tomorrow's timetable and lunch.
 
 ### 2) Timetable ("what's on tomorrow", "when does school end")
-Open `/dashboard/eb.php?mode=timetable` for that school, take a screenshot and list the day's lessons with times, start and end of school. Highlight substitutions and tests that day.
+Use `today_tomorrow` (or `week` for later days) from the Fast path; only if that fails, open `/dashboard/eb.php?mode=timetable` and take a screenshot. List the day's lessons with times, start and end of school. Highlight substitutions and tests that day.
 
 ### 3) Summary (daily / weekly)
 News for the period (default: since yesterday; weekly = last 7 days) + always all upcoming tests for the next 7 days. Format (labels in the user's language):

@@ -25,7 +25,7 @@ Keep a small state file, `edupage-notify-state.json`, so each run compares again
 }
 ```
 
-- On each run, collect the current grades (`/znamky/`) and upcoming tests (`/exam/…` + teacher messages) per child.
+- On each run, collect the current grades and upcoming tests per child. **Use edupage-reader's fast path** (`scripts/collect.js` in the edupage-reader skill, run in the signed-in tab with `daysBack` covering the time since the last check) – it returns `tests` and `grades` in one request per school, so a scheduled check is quick and cheap. Also scan `messages` for tests announced only in a message. If it returns an `error`, fall back to the pages (`/znamky/`, `/exam/…`).
 - **New grade** = a grade entry not in the stored `grades` list.
 - **New test** = an upcoming test not in the stored `tests` list (announced since last time).
 - After reporting, overwrite the state file with the current lists.
