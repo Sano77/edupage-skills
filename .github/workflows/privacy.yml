@@ -1,0 +1,23 @@
+name: Privacy check
+on:
+  push:
+  pull_request:
+jobs:
+  privacy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - name: Personal data
+        run: python3 scripts/privacy_check.py
+        env:
+          PRIVACY_SALT: ${{ secrets.PRIVACY_SALT }}
+      - name: Secrets (whole history)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
