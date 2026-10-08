@@ -15,7 +15,7 @@ import hashlib, hmac, os, re, subprocess, sys, unicodedata
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DENYLIST = os.path.join(ROOT, ".privacy-denylist.sha256")
 SKIP = {".privacy-denylist.sha256", "scripts/privacy_check.py", ".privacy-salt", ".privacy-allow"}
-ALLOWED_SUBDOMAINS = {"portal", "www", "help", "myschool", "mojaskola", "mojeskola", "school", "skola", "{school}", "{skola}"}
+ALLOWED_SUBDOMAINS = {"portal", "www", "help", "present", "classregister", "myschool", "mojaskola", "mojeskola", "school", "skola", "{school}", "{skola}"}
 ALLOWED_EMAIL = re.compile(r"(noreply|no-reply)@|@users\.noreply\.github\.com$|@example\.(com|org)$", re.I)
 
 PATTERNS = {
