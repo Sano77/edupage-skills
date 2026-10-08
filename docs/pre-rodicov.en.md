@@ -37,13 +37,19 @@ Just talk to Claude, for example:
 
 On the first run Claude discovers your children and schools from your EduPage account and confirms them with you.
 
+## From your phone
+
+Claude in Chrome only works in desktop Chrome, not on a phone. You can message Claude from your phone, but EduPage is read on your computer, which has to be on with Chrome open.
+
+When the computer is off, send Claude **screenshots from the EduPage app** (Tests, Messages, Timetable) or **photos of paper notices** and it builds the same overview from them. Absence excuses and other actions can't be done this way.
+
 ## Alerts for new grades and tests (optional)
 
 You can get an alert **only when something new appears** (a new grade or a test tomorrow). Tell Claude:
 
 > "Set up a weekday afternoon EduPage check and ping me only if there's something new."
 
-Claude creates a scheduled task. Important: for it to run reliably, let it run on your own computer — in the Claude desktop app turn on **"Require this computer"** in the task's settings, on a computer that's usually on and signed in to EduPage. If it can't reach EduPage, Claude tells you the check didn't run.
+The alert arrives as a notification on your phone. Claude creates a scheduled task. Important: for it to run reliably, let it run on your own computer — in the Claude desktop app turn on **"Require this computer"** in the task's settings, on a computer that's usually on and signed in to EduPage. If it can't reach EduPage, Claude tells you the check didn't run.
 
 ## Privacy
 

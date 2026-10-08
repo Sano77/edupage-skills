@@ -10,6 +10,10 @@ Nezáväzný zoznam, kam by sa plugin mohol posunúť.
 - **Export do kalendára** pre testy a akcie priamo z notifikácie (`.ics`), prípadne zápis do pripojeného kalendára.
 - **Stránka triedy** ako hostovaná verzia s automatickou aktualizáciou (dnes sa generuje na vyžiadanie).
 
+## Hotové (v1.1.0)
+
+- režim bez počítača (screenshoty, fotky oznamov), onboarding bez hesla, notifikácie do mobilu
+
 ## Hotové (v1.0.0)
 
 - edupage-reader, edupage-report, edupage-notify

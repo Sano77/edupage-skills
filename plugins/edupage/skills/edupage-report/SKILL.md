@@ -9,6 +9,17 @@ Turns EduPage data into a finished report. Data is collected the same way as in 
 
 Ask once which report the user wants if it isn't clear, then build it without further questions.
 
+## Before collecting data
+
+- **Check Chrome first.** Load the Chrome tools and call `tabs_context_mcp` before anything else. If Claude in Chrome isn't connected (typically the user is on a phone and the computer is off or asleep), say so right away and offer two ways: turn on the computer with Chrome, or send screenshots from the EduPage app / photos of paper notices and build the report from those. Don't start a report and fail halfway.
+- **Sign-in is the parent's job.** Never ask for, type or store a password, e-mail or verification code. If EduPage shows a login page – at first run or because the session expired mid-collection – ask the parent to sign in in the open tab, wait for "done", then continue. The first-run flow (finding the school, discovering children) is the same as in edupage-reader.
+
+### Report from screenshots or photos
+When the data comes from images instead of Chrome, build the same report from what's visible, and:
+- Say at the top which sources the report is based on (e.g. "from 3 screenshots of the Tests tab"), so the parent knows what may be missing – typically attendance, messages or the timetable.
+- Convert relative dates ("on Friday") to concrete dates and state the assumption if the image doesn't show when it was written. Don't guess unreadable parts; list them.
+- For the **class agenda page**, the privacy rules below apply just the same – a screenshot of a family message is not class-level data. If an image mixes class info with private details (grades, names), use only the class-level part.
+
 ## Report types
 
 ### A) Family report (private)
@@ -58,4 +69,4 @@ If the school blocks a module (e.g. the events calendar), say so in one line and
 
 ## Keeping it current
 
-A report is a snapshot. Put the date of the data in the footer. If the user wants it updated regularly, offer a scheduled task (e.g. Sunday evening) that re-collects the data and republishes the same page or sends the report.
+A report is a snapshot. Put the date of the data in the footer. If the user wants it updated regularly, offer a scheduled task (e.g. Sunday evening) that re-collects the data and republishes the same page or sends the report. Like edupage-notify, such a task needs the parent's computer with Chrome signed in to EduPage, so set it to require that computer; if a run can't reach EduPage it should say so instead of publishing a stale or empty report.

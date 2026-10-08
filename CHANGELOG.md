@@ -2,6 +2,19 @@
 
 Formát podľa [Keep a Changelog](https://keepachangelog.com/), verzie podľa [SemVer](https://semver.org/).
 
+## [1.1.0] – 2026-10-08
+
+### Pridané
+- **Krok 0 – kontrola Chrome** v edupage-reader aj edupage-report: keď Claude in Chrome nie je pripojený (napr. píšeš z mobilu a počítač je vypnutý), skill to povie hneď a ponúkne náhradné riešenie.
+- **Režim bez počítača**: prehľad aj report zo screenshotov EduPage appky alebo fotiek papierových oznamov (relatívne dátumy prepočíta, nečitateľné nedomýšľa, akcie nerobí).
+- edupage-notify: konkrétne nastavenie naplánovanej úlohy s notifikáciou do mobilu (beh na počítači rodiča, šablóna promptu, stav v priečinku na počítači, tiché behy bez notifikácie).
+- Návody pre rodičov (SK/CZ/EN): sekcia „Z mobilu“.
+
+### Zmenené
+- Prvé spustenie bez hesla: najprv hľadá otvorenú EduPage kartu, potom sa pýta len na názov školy (subdoménu dohľadá), prihlasuje sa rodič sám v Chrome, nájdené deti dá potvrdiť a hneď ukáže prvý prehľad.
+- Pri odhlásení počas práce skill požiada o opätovné prihlásenie namiesto pokračovania naslepo.
+- `.ics` z kalendára sa posiela rovno do chatu.
+
 ## [1.0.0] – 2026-10-07
 
 Prvé vydanie. Plugin pre rodičov s účtom v EduPage (edupage.org), čítanie cez Claude in Chrome.

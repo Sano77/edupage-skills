@@ -37,13 +37,19 @@ Napíš Claudovi normálnou rečou, napríklad:
 
 Pri prvom spustení si Claude sám zistí tvoje deti a školy z tvojho EduPage konta a potvrdí ti ich.
 
+## Z mobilu
+
+Claude in Chrome funguje len v Chrome na počítači, nie v mobile. Z telefónu sa teda dá písať, ale EduPage sa číta na počítači, ktorý musí byť zapnutý a mať otvorený Chrome.
+
+Keď počítač zapnutý nie je, pošli Claudovi **screenshoty z EduPage appky** (Plán testov, Správy, Rozvrh) alebo **fotky papierových oznamov** a spraví ti z nich rovnaký prehľad. Ospravedlnenky a iné akcie sa takto robiť nedajú.
+
 ## Upozornenia na nové známky a testy (voliteľné)
 
 Môžeš si nechať automaticky posielať upozornenie, **len keď niečo pribudne** (nová známka alebo zajtrajší test). Povedz Claudovi:
 
 > „Nastav mi každý pracovný deň poobede kontrolu EduPage a daj vedieť, len ak je niečo nové.“
 
-Claude vytvorí naplánovanú úlohu. Dôležité: aby bežala spoľahlivo, nechaj ju bežať cez svoj počítač — v Claude desktop appke jej v nastaveniach zapni **„Require this computer“** na počítači, ktorý býva zapnutý a prihlásený do EduPage. Ak sa k EduPage nedostane, Claude ti napíše, že kontrola neprebehla.
+Upozornenie ti príde ako notifikácia do mobilu. Claude vytvorí naplánovanú úlohu. Dôležité: aby bežala spoľahlivo, nechaj ju bežať cez svoj počítač — v Claude desktop appke jej v nastaveniach zapni **„Require this computer“** na počítači, ktorý býva zapnutý a prihlásený do EduPage. Ak sa k EduPage nedostane, Claude ti napíše, že kontrola neprebehla.
 
 ## Súkromie
 

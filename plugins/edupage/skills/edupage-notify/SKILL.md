@@ -11,7 +11,7 @@ Use this for a running watch (e.g. a scheduled afternoon check), not for a full 
 
 ## State: what "new" means
 
-Keep a small state file in the output folder, `edupage-notify-state.json`, so each run compares against the last one:
+Keep a small state file, `edupage-notify-state.json`, so each run compares against the last one. For scheduled runs it must survive between sessions – see "State between runs" below.
 
 ```json
 {
@@ -53,13 +53,27 @@ nič nové
 - Grades are listed plainly, no averages, no judging – matching the edupage-reader default. If the user has said grades don't matter, drop new grades to a single count line or omit them.
 - Don't repeat items already reported in a previous run (that's what the state file prevents).
 
-## Running it regularly
+## Running it regularly – alerts on the phone
 
-This skill is most useful on a schedule. Offer to set up a recurring task (e.g. weekday afternoons after school) that runs this check and sends the alert. Keep in mind:
+This skill is most useful on a schedule: the check runs on the parent's computer, and the alert arrives as a notification on their phone. Offer to set it up after the first successful check.
 
-- A scheduled run starts a fresh session and **needs Claude in Chrome with the parent signed in to EduPage**. If the run can't reach a signed-in session, it should report that it couldn't check, not fail silently.
-- Only send a notification when there is something new; a quiet run should stay quiet (no notification, or a `noop`), so the user isn't pinged for nothing.
-- Keep the state file between runs in the same workspace so "new" stays meaningful.
+**How it works (explain in two sentences):** the check needs the computer to be on with Chrome signed in to EduPage; the phone only receives the result. If the computer is off at check time, the parent gets a short "couldn't check" alert instead (see below).
+
+**Setup – use the session's own scheduling tools** (they may need loading via tool search; go by their descriptions; never a session-local cron that disappears when the chat ends):
+
+1. Ask once for the time if the parent didn't say. Default: **weekdays ~15:00** (after school, when new grades and announcements appear). One extra evening run (~19:00) is optional.
+2. Create a **scheduled task** with:
+   - **requires the parent's computer** (the run must use Claude in Chrome there), so it doesn't run in the cloud without access to EduPage;
+   - **push notifications on** (e-mail optional), so the alert reaches the phone;
+   - a **standalone prompt** – each run starts fresh with no memory of this chat. Template:
+     > Run the edupage-notify skill: check EduPage for new grades and newly announced tests for my children ({children – schools}). Compare with the state file `{path}` and update it. If something is new, send the short alert. If nothing is new, stay quiet. If EduPage can't be reached, send the "couldn't check" alert.
+3. Confirm in one line: when it runs, that it needs the computer on, and how they can pause it.
+
+The children's names in the schedule prompt stay private to that parent's account – they never belong in this shared skill.
+
+**State between runs:** a scheduled run has no memory of the previous one, so the state file must live where the next run can read it. Prefer a folder on the parent's computer connected to the task (e.g. a `EduPage` folder in Documents) and put its path in the prompt. If no such folder is available, follow the fallback in "When EduPage can't be reached" and, without a state file, report only tests announced in the last 24 hours and grades dated today/yesterday, so the parent isn't flooded with old items.
+
+**Quiet runs stay quiet:** only notify when there is something new or the check failed. A successful run with nothing new sends no notification (or a `noop`), so the parent isn't pinged for nothing.
 
 If the user wants it, also feed new tests into the edupage-report class page or an `.ics` calendar.
 
