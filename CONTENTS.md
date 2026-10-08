@@ -1,6 +1,6 @@
 # Obsah pluginu edupage-skills
 
-Prehľad toho, čo plugin obsahuje a ako je poskladaný. Verzia **1.0.0**.
+Prehľad toho, čo plugin obsahuje a ako je poskladaný. Verzia **1.1.0**.
 
 ## Štruktúra
 
@@ -42,8 +42,9 @@ edupage-skills/
 | Súhrn | denný alebo týždenný, za každé dieťa zvlášť |
 | Známky, dochádzka, jedáleň | na vyžiadanie |
 | Akcie | ospravedlnenka, odhlásenie obeda, odpoveď učiteľke — vždy najprv ukáže text, odošle až po „áno“ |
+| Bez počítača | prehľad zo screenshotov EduPage appky alebo fotiek papierových oznamov; akcie v tomto režime nerobí |
 
-Heslo nikdy nežiada ani neukladá. Školy na jednom konte prepína bez hesla.
+Na začiatku overí, či je Claude in Chrome pripojený; ak nie (napr. z mobilu pri vypnutom počítači), hneď ponúkne zapnúť počítač alebo poslať screenshoty. Pri prvom spustení nájde školu (otvorená karta, názov školy alebo portal.edupage.org), rodič sa prihlási sám a skill si zistí deti a školy. Heslo nikdy nežiada, nevidí ani neukladá. Školy na jednom konte prepína bez hesla.
 
 ## Skill 2 — edupage-report (reporty)
 
@@ -52,7 +53,7 @@ Heslo nikdy nežiada ani neukladá. Školy na jednom konte prepína bez hesla.
 | Rodinný (súkromný) | týždenný/mesačný, za každé dieťa: testy s odpočtom, napísané testy, DÚ, akcie, dochádzka, voliteľne známky, na konci „čo treba urobiť“ |
 | Stránka triedy (zdieľateľná) | odpočet do testu, počítadlo pri každom teste, zoznam po týždňoch, sekcia „Už bolo“ |
 
-Stránka triedy má prísne pravidlo: **nikdy** známky, dochádzku, mená ani kontakty — len informácie na úrovni triedy. Používa šablónu `assets/agenda-template.html`, ktorá počíta všetko z aktuálneho dátumu.
+Stránka triedy má prísne pravidlo: **nikdy** známky, dochádzku, mená ani kontakty — len informácie na úrovni triedy. Používa šablónu `assets/agenda-template.html`, ktorá počíta všetko z aktuálneho dátumu. Report vie spraviť aj zo screenshotov či fotiek – vtedy uvedie, z čoho vychádza.
 
 ## Skill 3 — edupage-notify (upozornenia)
 
@@ -61,7 +62,7 @@ Sleduje EduPage a hlási **len to, čo pribudlo** od poslednej kontroly:
 - nová známka
 - novo ohlásený test alebo písomka
 
-Stav si pamätá v súbore `edupage-notify-state.json`, takže neupozorňuje opakovane na to isté. Prvý beh si len uloží východiskový stav. Najužitočnejšie je spustiť ho ako naplánovanú úlohu (napr. poobede cez pracovné dni) — upozornenie príde, len keď je naozaj niečo nové. Scheduled beh potrebuje Chrome prihlásený do EduPage.
+Stav si pamätá v súbore `edupage-notify-state.json`, takže neupozorňuje opakovane na to isté. Prvý beh si len uloží východiskový stav. Najužitočnejšie je spustiť ho ako naplánovanú úlohu (napr. poobede cez pracovné dni) — upozornenie príde, len keď je naozaj niečo nové. Naplánovaná úloha beží na počítači rodiča s Chrome prihláseným do EduPage a upozornenie pošle ako notifikáciu do mobilu. Stav ukladá do priečinka na počítači, aby ho ďalší beh našiel. Ak sa k EduPage nedostane, dá vedieť, že kontrola neprebehla.
 
 ## Kontrola súkromia
 
