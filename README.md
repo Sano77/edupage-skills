@@ -10,6 +10,15 @@ Claude číta EduPage cez **Claude in Chrome** v tvojom prihlásenom prehliadač
 
 ![Ukážka súhrnu](docs/ukazka-suhrnu.png)
 
+### Ako číta EduPage
+
+Claude otvorí EduPage v tvojom Chrome, kde si prihlásený, a v tej karte spustí krátky skript ([`collect.js`](plugins/edupage/skills/edupage-reader/scripts/collect.js)). Ten si vypýta tie isté dáta, z ktorých sa skladajú stránky EduPage – testy, DÚ, správy, rozvrh, známky – len ich nečaká vykresliť. Je to rýchlejšie a presnejšie než klikanie a screenshoty.
+
+- len čítanie, s tvojím prihlásením v prehliadači – heslo Claude nepotrebuje ani nevidí,
+- dáta neodchádzajú nikam inam, len do tvojho chatu,
+- keď EduPage niečo zmení alebo ťa odhlási, Claude prejde na klasické klikanie po stránkach a povie ti to,
+- odosielanie (ospravedlnenka, odpoveď učiteľke) ide vždy cez stránku a až po tvojom „áno“.
+
 ## Čo vie
 
 - 🔴/🟡 testy a písomky navrchu, aj tie ohlásené len v správe učiteľky
@@ -78,6 +87,7 @@ A Claude skill for parents using [EduPage](https://www.edupage.org) (common in S
 - daily / weekly summary per child, "what's on tomorrow?", events calendar with `.ics` export
 - absence excuses, cancelling lunch, replying to teachers – always shown first and sent only after your explicit "yes"
 - a second skill, **edupage-report**, builds weekly/monthly family reports and a shareable class agenda page with a test countdown
+- reads the data the EduPage pages are built from, inside your signed-in tab (fast, read-only, no password), with page clicking as a fallback
 - answers in your language; you sign in yourself – it never asks for, sees or stores passwords, and keeps children's data in your chat
 - **on your phone without a computer:** builds the same overview from screenshots of the EduPage app or photos of paper notices
 - **edupage-notify** watches for new grades and newly announced tests and sends an alert to your phone only when something changed

@@ -54,7 +54,10 @@ async function edupageCollect(opt) {
       if (due >= from && due <= to) homework.push({ due, subject: subj(d.predmetid), title: strip(d.nazov || it.text, 160), details: strip(d.popis, 300), by: it.vlastnik_meno || '' });
     } else if (it.typ === 'sprava' || it.typ === 'news') {
       const added = (it.cas_pridania || '').slice(0, 10);
-      if (added >= from) messages.push({ date: it.cas_pridania, from: it.vlastnik_meno || it.user_meno || '', reply: String(it.reakcia_na || '') !== '' && String(it.reakcia_na) !== '0', text: strip(it.text || d.title || (d.messageContent && d.messageContent.text), 600), attachments: !!(d.attachements && Object.keys(d.attachements).length) });
+      // "Important" messages only carry a placeholder in it.text; the real body is HTML in data.messageContent.
+      // Reading it here does NOT confirm the read receipt – the parent still confirms it in EduPage.
+      const body = typeof d.messageContent === 'string' && d.messageContent ? d.messageContent : (it.text || d.title);
+      if (added >= from) messages.push({ date: it.cas_pridania, from: it.vlastnik_meno || it.user_meno || '', important: String(d.receipt) === '1', reply: String(it.reakcia_na || '') !== '' && String(it.reakcia_na) !== '0', text: strip(body, 600), attachments: !!(d.attachements && Object.keys(d.attachements).length) });
     } else if (it.typ === 'substitution') {
       substitutions.push({ dates: Object.keys(d).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k)), text: strip(it.text, 400) });
     } else if (it.typ === 'stravamenu' || it.typ === 'strava_vydaj') {

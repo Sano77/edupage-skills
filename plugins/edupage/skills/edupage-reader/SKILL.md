@@ -65,11 +65,11 @@ Instead of clicking through pages and taking screenshots, run the bundled collec
 | `tests` | upcoming tests in the window: `date` (the test day), `type` (Písomka, Kratučký testík, Veľká písomka, Skúšanie, Projekt…), `subject`, `title`, `announced` |
 | `homework` | `due`, `subject`, `title`, `details` |
 | `events` | school events, trips, holidays in the window |
-| `messages` | teacher messages and news from the last days: `date`, `from`, `text` (trimmed) |
+| `messages` | teacher messages and news from the last days: `date`, `from`, `text` (trimmed), `important` (the teacher asked for a read confirmation – tell the parent to confirm it in EduPage; reading it here doesn't) |
 | `today_tomorrow` | lessons for today and tomorrow with times, subjects, teachers – already reflects substitutions |
 | `week` | timetable for this and next week by date (use for days beyond tomorrow) |
 | `substitutions`, `lunches`, `bells` | substitution notices, lunch menu, bell times |
-| `grades` | recent grades: `date`, `subject`, `value`, `what` |
+| `grades` | recent grades: `date`, `subject`, `value` (a mark 1–5, or percent/points – some schools grade in %), `what` |
 
 - Adjust `OPTIONS` at the top of the script when needed (`daysAhead`, `daysBack`, `weekTimetable`). Weekly summary → `daysBack: 7`; calendar → `daysAhead: 28`.
 - **Several schools:** run it once per school – switch schools via the account menu first (see **Switching schools**), then run it again in the same tab.
